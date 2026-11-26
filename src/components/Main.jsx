@@ -5,19 +5,25 @@ export default function Main(){
             title:"Tamil Nadu Student Scholarship",
             department:"Government of Tamil Nadu",
             location:"Chennai",
-            deadline:"15 december 2026"
+            deadline:"15 december 2026",
+            isOpen: true,
+            description: "Scholarship opportunities for eligible students"
         },
         {id:2,
             title:"Railway Recruitment",
             department:"Indian Railways",
             location:"Gujarat",
-            deadline:"25 december 2026"
+            deadline:"25 december 2026",
+            isOpen: false,
+            description : "Railway job opportunities"
         },
         {id:3,
             title:"SSC Combined Graduate Level",
             department:"Staff Selection Commission",
             location:"Madurai",
-            deadline:"30 december 2026"
+            deadline:"30 december 2026",
+            isOpen: true,
+            description: "State level government exam"
         }
     ];
     const noticeCards = notices.map((notice)=>{
@@ -28,6 +34,8 @@ export default function Main(){
                 department={notice.department}
                 location={notice.location}
                 deadline={notice.deadline}
+                isOpen = {notice.isOpen}
+                description = {notice.description}
             />
         );
     })
