@@ -9,6 +9,7 @@ export default function NoticeCard(props){
         <p>{props.deadline}</p>
         <div>{props.children}</div>
         <p>{props.isOpen? "Application Open" : "Application closed"}</p>
+        <p>{props.qualification}</p>
         <button onClick = {()=>{
             setShowDetails(!showDetails)
         }}>{showDetails?"hide details":"view details"}</button>

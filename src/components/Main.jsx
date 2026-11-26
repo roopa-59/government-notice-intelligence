@@ -7,7 +7,8 @@ export default function Main(){
             location:"Chennai",
             deadline:"15 december 2026",
             isOpen: true,
-            description: "Scholarship opportunities for eligible students"
+            description: "Scholarship opportunities for eligible students",
+            qualification: "undergraduate"
         },
         {id:2,
             title:"Railway Recruitment",
@@ -15,7 +16,8 @@ export default function Main(){
             location:"Gujarat",
             deadline:"25 december 2026",
             isOpen: false,
-            description : "Railway job opportunities"
+            description : "Railway job opportunities",
+            qualification: "tenth"
         },
         {id:3,
             title:"SSC Combined Graduate Level",
@@ -23,7 +25,8 @@ export default function Main(){
             location:"Madurai",
             deadline:"30 december 2026",
             isOpen: true,
-            description: "State level government exam"
+            description: "State level government exam",
+            qualification: "Second year higher secondary"
         }
     ];
     const noticeCards = notices.map((notice)=>{
@@ -36,6 +39,7 @@ export default function Main(){
                 deadline={notice.deadline}
                 isOpen = {notice.isOpen}
                 description = {notice.description}
+                qualification = {notice.qualification}
             />
         );
     })
