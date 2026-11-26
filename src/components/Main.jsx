@@ -1,5 +1,7 @@
 import NoticeCard from "./NoticeCard";
+import {useState} from "react";
 export default function Main(){
+    const [searchTerm,setSearchTerm] = useState("");
     const notices = [
         {id:1,
             title:"Tamil Nadu Student Scholarship",
@@ -29,7 +31,12 @@ export default function Main(){
             qualification: "Second year higher secondary"
         }
     ];
-    const noticeCards = notices.map((notice)=>{
+    const filteredNotices = notices.filter((notice)=>{
+        return (
+            notice.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    });
+    const noticeCards = filteredNotices.map((notice)=>{
         return (
             <NoticeCard
                 key={notice.id}
@@ -47,7 +54,14 @@ export default function Main(){
         <main>
         <h2>Latest Government Notices</h2>
         <p>Explore the latest job notifications and opportunities</p>
-        {noticeCards}
+        <input 
+        placeholder = "Search notices by title..."
+        value = {searchTerm}
+        onChange={(event) => {
+            setSearchTerm(event.target.value);
+        }}        
+        />
+        {filteredNotices.length > 0 ? noticeCards : <p>No notices found.</p>}
         </main>
     );
 }
