@@ -3,6 +3,7 @@ import {useState} from "react";
 export default function Main(){
     const [searchTerm,setSearchTerm] = useState("");
     const [selectedDepartment,setSelectedDepartment] = useState("All Departments");
+    const [selectedLocation,setSelectedLocation] = useState("All Locations");
     const notices = [
         {id:1,
             title:"Tamil Nadu Student Scholarship",
@@ -38,6 +39,10 @@ export default function Main(){
             (
                 selectedDepartment === "All Departments" ||
                 notice.department === selectedDepartment
+            ) && 
+            (
+                selectedLocation === "All Locations" ||
+                notice.location === selectedLocation           
             )
         );
     });
@@ -73,6 +78,12 @@ export default function Main(){
             <option value = "Government of Tamil Nadu">Government of Tamil Nadu</option>
             <option value="Indian Railways">Indian Railways</option>
             <option value = "Staff Selection Commission">Staff Selection Commission</option>
+        </select>
+        <select value={selectedLocation} onChange = {(event)=>setSelectedLocation(event.target.value)}>
+            <option value="All Locations">All Locations</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Madurai">Madurai</option>
         </select>
         {filteredNotices.length > 0 ? noticeCards : <p>No notices found.</p>}
         </main>
