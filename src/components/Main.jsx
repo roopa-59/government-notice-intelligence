@@ -7,6 +7,7 @@ export default function Main() {
   const [selectedLocation, setSelectedLocation] = useState("All Locations");
   const [selectedQualification, setSelectedQualification] =
     useState("All Qualifications");
+  const [selectedStatus, setSelectedStatus] = useState("All Statuses");
   const notices = [
     {
       id: 1,
@@ -47,7 +48,10 @@ export default function Main() {
       (selectedLocation === "All Locations" ||
         notice.location === selectedLocation) &&
       (selectedQualification === "All Qualifications" ||
-        notice.qualification === selectedQualification)
+        notice.qualification === selectedQualification) &&
+      (selectedStatus === "All Statuses" ||
+        (selectedStatus === "open" && notice.isOpen === true) ||
+        (selectedStatus === "closed" && notice.isOpen === false))
     );
   });
   const noticeCards = filteredNotices.map((notice) => {
@@ -109,6 +113,16 @@ export default function Main() {
         <option value="tenth">Tenth</option>
         <option value="undergraduate">Undergraduate</option>
         <option value="Second year higher secondary">Higher Secondary</option>
+      </select>
+      <select
+        value={selectedStatus}
+        onChange={(event) => {
+          setSelectedStatus(event.target.value);
+        }}
+      >
+        <option value="All Statuses">All Statuses</option>
+        <option value="open">Application Open</option>
+        <option value="closed">Application Closed</option>
       </select>
       {filteredNotices.length > 0 ? noticeCards : <p>No notices found.</p>}
     </main>
