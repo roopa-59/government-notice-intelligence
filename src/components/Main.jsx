@@ -8,6 +8,13 @@ export default function Main() {
   const [selectedQualification, setSelectedQualification] =
     useState("All Qualifications");
   const [selectedStatus, setSelectedStatus] = useState("All Statuses");
+  const clearFilters = () => {
+    setSearchTerm("");
+    setSelectedDepartment("All Departments");
+    setSelectedLocation("All Locations");
+    setSelectedQualification("All Qualifications");
+    setSelectedStatus("All Statuses");
+  };
   const notices = [
     {
       id: 1,
@@ -124,6 +131,7 @@ export default function Main() {
         <option value="open">Application Open</option>
         <option value="closed">Application Closed</option>
       </select>
+      <button onClick={clearFilters}>Clear Filters</button>
       {filteredNotices.length > 0 ? noticeCards : <p>No notices found.</p>}
     </main>
   );
