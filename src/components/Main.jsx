@@ -2,6 +2,7 @@ import NoticeCard from "./NoticeCard";
 import {useState} from "react";
 export default function Main(){
     const [searchTerm,setSearchTerm] = useState("");
+    const [selectedDepartment,setSelectedDepartment] = useState("All Departments");
     const notices = [
         {id:1,
             title:"Tamil Nadu Student Scholarship",
@@ -33,7 +34,11 @@ export default function Main(){
     ];
     const filteredNotices = notices.filter((notice)=>{
         return (
-            notice.title.toLowerCase().includes(searchTerm.toLowerCase())
+            notice.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+            (
+                selectedDepartment === "All Departments" ||
+                notice.department === selectedDepartment
+            )
         );
     });
     const noticeCards = filteredNotices.map((notice)=>{
@@ -61,6 +66,14 @@ export default function Main(){
             setSearchTerm(event.target.value);
         }}        
         />
+        <select value={selectedDepartment} onChange={(event) => {
+            setSelectedDepartment(event.target.value);
+        }}>
+            <option value="All Departments">All Departments</option>
+            <option value = "Government of Tamil Nadu">Government of Tamil Nadu</option>
+            <option value="Indian Railways">Indian Railways</option>
+            <option value = "Staff Selection Commission">Staff Selection Commission</option>
+        </select>
         {filteredNotices.length > 0 ? noticeCards : <p>No notices found.</p>}
         </main>
     );
